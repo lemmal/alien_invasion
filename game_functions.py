@@ -50,11 +50,12 @@ def update_screen(ai_settings, screen, ship, bullets, aliens):
     pygame.display.flip()
 
 
-def update_bullets(bullets: Group):
+def update_bullets(aliens, bullets: Group):
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+    pygame.sprite.groupcollide(bullets, aliens, True, True)
 
 
 def create_fleet(ai_settings, screen, ship, aliens):
